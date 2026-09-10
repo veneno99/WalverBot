@@ -1,0 +1,28 @@
+kind = "web"
+previewPath = "/"
+title = "Walver Discord Bot Website"
+description = "A dark, modern landing page for Walver, an all-in-one Discord bot with moderation, economy, community, utility, music, and fun tools."
+version = "1.0.0"
+id = "artifacts/walver-site"
+router = "path"
+
+[[services]]
+name = "web"
+paths = [ "/" ]
+localPort = 25758
+
+[services.development]
+run = "pnpm --filter @workspace/walver-site run dev"
+
+[services.production]
+build = [ "pnpm", "--filter", "@workspace/walver-site", "run", "build" ]
+serve = "static"
+publicDir = "artifacts/walver-site/dist/public"
+
+[[services.production.rewrites]]
+from = "/*"
+to = "/index.html"
+
+[services.env]
+PORT = "25758"
+BASE_PATH = "/"
