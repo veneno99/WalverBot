@@ -4,6 +4,7 @@ import { ErrorBoundary } from '@/components/error-boundary';
 import { Toaster } from '@/components/ui/toaster';
 import { TooltipProvider } from '@/components/ui/tooltip';
 import { CrownMark } from '@/components/walver/CrownMark';
+import { Navigation, ADD_WALVER, SUPPORT_SERVER } from '@/components/walver/Navigation';
 import { allCommands, commandGroups, type CommandCategory } from '@/data/commands';
 import {
   ArrowRight,
@@ -11,21 +12,18 @@ import {
   ChevronDown,
   CircleHelp,
   Gamepad2,
-  Menu,
   Music2,
   Search,
   ShieldCheck,
   Ticket,
   Users,
-  X,
   type LucideIcon,
 } from 'lucide-react';
 import { Route, Switch, useLocation, Router as WouterRouter } from 'wouter';
 import NotFound from '@/pages/not-found';
+import SetupGuide from '@/pages/setup-guide';
 
 const queryClient = new QueryClient();
-const ADD_WALVER = 'https://discord.com/oauth2/authorize?client_id=1547548274892742726&permissions=8&integration_type=0&scope=bot';
-const SUPPORT_SERVER = 'https://discord.gg/cRvZ35uhRA';
 
 type Feature = {
   title: string;
@@ -45,30 +43,6 @@ const features: Feature[] = [
 
 function ExternalLink({ href, children, className = '', testId }: { href: string; children: ReactNode; className?: string; testId: string }) {
   return <a className={className} href={href} target="_blank" rel="noreferrer" data-testid={testId}>{children}</a>;
-}
-
-function Navigation({ mobileOpen, setMobileOpen }: { mobileOpen: boolean; setMobileOpen: (open: boolean) => void }) {
-  const closeMenu = () => setMobileOpen(false);
-  return (
-    <header className="nav-shell" data-testid="navigation-header">
-      <a href="#home" className="brand" onClick={closeMenu} data-testid="link-home">
-        <CrownMark />
-        <span>WALVER</span>
-      </a>
-      <nav className={`nav-links ${mobileOpen ? 'open' : ''}`} aria-label="Primary navigation">
-        <a href="#home" onClick={closeMenu} data-testid="link-nav-home">Home</a>
-        <a href="#features" onClick={closeMenu} data-testid="link-nav-setup">Setup Guide</a>
-        <ExternalLink href={SUPPORT_SERVER} testId="link-nav-support">Support</ExternalLink>
-        <ExternalLink href={ADD_WALVER} testId="link-nav-add">Add Walver</ExternalLink>
-      </nav>
-      <ExternalLink href={ADD_WALVER} className="nav-add" testId="link-nav-add-desktop">
-        Add Walver <ArrowUpRight size={14} />
-      </ExternalLink>
-      <button className="mobile-toggle focus-ring" type="button" aria-label={mobileOpen ? 'Close navigation menu' : 'Open navigation menu'} aria-expanded={mobileOpen} onClick={() => setMobileOpen(!mobileOpen)} data-testid="button-mobile-menu">
-        {mobileOpen ? <X size={20} /> : <Menu size={20} />}
-      </button>
-    </header>
-  );
 }
 
 function Hero() {
@@ -261,10 +235,9 @@ function Footer() {
 }
 
 function Home() {
-  const [mobileOpen, setMobileOpen] = useState(false);
   return (
     <main className="walver-page">
-      <Navigation mobileOpen={mobileOpen} setMobileOpen={setMobileOpen} />
+      <Navigation />
       <Hero />
       <Features />
       <CommandDirectory />
@@ -278,6 +251,7 @@ function Router() {
     <RoutedErrorBoundary>
       <Switch>
         <Route path="/" component={Home} />
+        <Route path="/setup-guide" component={SetupGuide} />
         <Route component={NotFound} />
       </Switch>
     </RoutedErrorBoundary>
