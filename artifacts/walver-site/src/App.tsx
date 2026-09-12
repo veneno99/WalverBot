@@ -221,7 +221,7 @@ function Footer() {
             </div>
             <div className="footer-col">
               <h3>Legal</h3>
-              <Link href="/terms-of-service" data-testid="link-footer-terms">Terms of Service</Link>
+              <Link href="/terms-of-services" data-testid="link-footer-terms">Terms of Service</Link>
               <Link href="/privacy-policy" data-testid="link-footer-privacy">Privacy Policy</Link>
             </div>
           </div>
@@ -253,6 +253,7 @@ function Router() {
       <Switch>
         <Route path="/" component={Home} />
         <Route path="/setup-guide" component={SetupGuide} />
+        <Route path="/terms-of-services" component={TermsOfService} />
         <Route path="/terms-of-service" component={TermsOfService} />
         <Route path="/privacy-policy" component={PrivacyPolicy} />
         <Route component={NotFound} />

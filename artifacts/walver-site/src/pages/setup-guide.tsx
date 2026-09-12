@@ -122,7 +122,7 @@ function DocsFooter() {
             </div>
             <div className="footer-col">
               <h3>Legal</h3>
-              <Link href="/terms-of-service" data-testid="link-docs-footer-terms">Terms of Service</Link>
+              <Link href="/terms-of-services" data-testid="link-docs-footer-terms">Terms of Service</Link>
               <Link href="/privacy-policy" data-testid="link-docs-footer-privacy">Privacy Policy</Link>
             </div>
           </div>

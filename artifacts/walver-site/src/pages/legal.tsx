@@ -80,7 +80,7 @@ function LegalFooter() {
             <Link href="/" data-testid="link-legal-footer-home">Home</Link>
             <Link href="/setup-guide" data-testid="link-legal-footer-setup">Setup Guide</Link>
             <Link href="/?section=commands#commands" data-testid="link-legal-footer-commands">Commands</Link>
-            <Link href="/terms-of-service" data-testid="link-legal-footer-terms">Terms of Service</Link>
+            <Link href="/terms-of-services" data-testid="link-legal-footer-terms">Terms of Service</Link>
             <Link href="/privacy-policy" data-testid="link-legal-footer-privacy">Privacy Policy</Link>
           </div>
         </div>
