@@ -122,8 +122,22 @@ function DocsFooter() {
             </div>
             <div className="footer-col">
               <h3>Legal</h3>
-              <Link href="/terms-of-services" data-testid="link-docs-footer-terms">Terms of Service</Link>
-              <Link href="/privacy-policy" data-testid="link-docs-footer-privacy">Privacy Policy</Link>
+              <a
+                href="https://walver.vercel.app/terms-of-services"
+                target="_blank"
+                rel="noopener noreferrer"
+                data-testid="link-docs-footer-terms"
+              >
+                Terms of Service
+              </a>
+              <a
+                href="https://walver.vercel.app/privacy-policy"
+                target="_blank"
+                rel="noopener noreferrer"
+                data-testid="link-docs-footer-privacy"
+              >
+                Privacy Policy
+              </a>
             </div>
           </div>
           <div className="footer-bottom">

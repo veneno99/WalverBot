@@ -22,7 +22,6 @@ import {
 import { Link, Route, Switch, useLocation, Router as WouterRouter } from 'wouter';
 import NotFound from '@/pages/not-found';
 import SetupGuide from '@/pages/setup-guide';
-import { PrivacyPolicy, TermsOfService } from '@/pages/legal';
 
 const queryClient = new QueryClient();
 
@@ -221,8 +220,22 @@ function Footer() {
             </div>
             <div className="footer-col">
               <h3>Legal</h3>
-              <Link href="/terms-of-services" data-testid="link-footer-terms">Terms of Service</Link>
-              <Link href="/privacy-policy" data-testid="link-footer-privacy">Privacy Policy</Link>
+              <a
+                href="https://walver.vercel.app/terms-of-services"
+                target="_blank"
+                rel="noopener noreferrer"
+                data-testid="link-footer-terms"
+              >
+                Terms of Service
+              </a>
+              <a
+                href="https://walver.vercel.app/privacy-policy"
+                target="_blank"
+                rel="noopener noreferrer"
+                data-testid="link-footer-privacy"
+              >
+                Privacy Policy
+              </a>
             </div>
           </div>
           <div className="footer-bottom">
@@ -253,9 +266,6 @@ function Router() {
       <Switch>
         <Route path="/" component={Home} />
         <Route path="/setup-guide" component={SetupGuide} />
-        <Route path="/terms-of-services" component={TermsOfService} />
-        <Route path="/terms-of-service" component={TermsOfService} />
-        <Route path="/privacy-policy" component={PrivacyPolicy} />
         <Route component={NotFound} />
       </Switch>
     </RoutedErrorBoundary>
