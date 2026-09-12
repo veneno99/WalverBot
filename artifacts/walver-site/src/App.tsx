@@ -19,9 +19,10 @@ import {
   Users,
   type LucideIcon,
 } from 'lucide-react';
-import { Route, Switch, useLocation, Router as WouterRouter } from 'wouter';
+import { Link, Route, Switch, useLocation, Router as WouterRouter } from 'wouter';
 import NotFound from '@/pages/not-found';
 import SetupGuide from '@/pages/setup-guide';
+import { PrivacyPolicy, TermsOfService } from '@/pages/legal';
 
 const queryClient = new QueryClient();
 
@@ -209,9 +210,9 @@ function Footer() {
             </div>
             <div className="footer-col">
               <h3>Quick Links</h3>
-              <a href="#home" data-testid="link-footer-home">Home</a>
-              <a href="#features" data-testid="link-footer-setup">Setup Guide</a>
-              <a href="#commands" data-testid="link-footer-commands">Commands</a>
+              <Link href="/" data-testid="link-footer-home">Home</Link>
+              <Link href="/setup-guide" data-testid="link-footer-setup">Setup Guide</Link>
+              <Link href="/?section=commands#commands" data-testid="link-footer-commands">Commands</Link>
             </div>
             <div className="footer-col">
               <h3>Support</h3>
@@ -220,8 +221,8 @@ function Footer() {
             </div>
             <div className="footer-col">
               <h3>Legal</h3>
-              <a href="#legal" data-testid="link-footer-terms">Terms of Service</a>
-              <a href="#legal" data-testid="link-footer-privacy">Privacy Policy</a>
+              <Link href="/terms-of-service" data-testid="link-footer-terms">Terms of Service</Link>
+              <Link href="/privacy-policy" data-testid="link-footer-privacy">Privacy Policy</Link>
             </div>
           </div>
           <div className="footer-bottom">
@@ -252,6 +253,8 @@ function Router() {
       <Switch>
         <Route path="/" component={Home} />
         <Route path="/setup-guide" component={SetupGuide} />
+        <Route path="/terms-of-service" component={TermsOfService} />
+        <Route path="/privacy-policy" component={PrivacyPolicy} />
         <Route component={NotFound} />
       </Switch>
     </RoutedErrorBoundary>
