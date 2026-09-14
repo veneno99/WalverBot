@@ -3,16 +3,17 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ErrorBoundary } from '@/components/error-boundary';
 import { Toaster } from '@/components/ui/toaster';
 import { TooltipProvider } from '@/components/ui/tooltip';
-import { CrownMark } from '@/components/walver/CrownMark';
-import { Navigation, ADD_WALVER, SUPPORT_SERVER } from '@/components/walver/Navigation';
+import { SpadeMark } from '@/components/spade/SpadeMark';
+import { Navigation, ADD_SPADE, SUPPORT_SERVER, TOPGG_VOTE } from '@/components/spade/Navigation';
 import { allCommands, commandGroups, type CommandCategory } from '@/data/commands';
 import {
   ArrowRight,
   ArrowUpRight,
   ChevronDown,
   CircleHelp,
+  ChevronUp,
   Gamepad2,
-  Music2,
+  ServerCog,
   Search,
   ShieldCheck,
   Ticket,
@@ -38,7 +39,14 @@ const features: Feature[] = [
   { title: 'Community & Engagement', description: 'Give people more reasons to show up, participate, and stick around.', tags: ['Leveling', 'Giveaways', 'Reaction Roles', 'Server Stats', 'Applications'], icon: Users },
   { title: 'Economy & Games', description: 'Turn idle minutes into momentum with a full server economy and mini-game loop.', tags: ['Beg', 'Daily', 'Work', 'Crime', 'Gamble', 'Shop', 'Rob'], icon: Gamepad2 },
   { title: 'Utility & Tickets', description: 'Reduce the busywork. Guide members to the right place and keep requests moving.', tags: ['Ticket System', 'To-Do Lists', 'Verification', 'Auto-roles', 'Auto-verify'], icon: Ticket },
-  { title: 'Music & Fun', description: 'Keep the atmosphere alive with shared listening, polls, and quick-hit commands.', tags: ['Play', 'Queue', 'Polls', 'Search'], icon: Music2 },
+  { title: 'Server Management', description: 'See the signal in your server. Logs, channels, stats, and configuration in one reliable layer.', tags: ['Logging', 'Welcome', 'Config Wizard', 'Server Stats'], icon: ServerCog },
+];
+
+const faqs = [
+  { question: 'How many commands does Spade have?', answer: `Spade ships with ${allCommands.length}+ slash commands across moderation, utility, economy, games, and server management.` },
+  { question: 'Can I use Spade alongside other bots?', answer: 'Yes. Spade is modular by design. Enable the tools your community needs and keep the rest of your stack intact.' },
+  { question: 'What permissions does Spade need?', answer: 'Spade asks for the permissions required by the modules you use. The invite flow lets you review access before adding it.' },
+  { question: 'Where can I get help setting up?', answer: 'Join the Spade support server for setup help, release notes, and a direct line to the people building the bot.' },
 ];
 
 function ExternalLink({ href, children, className = '', testId }: { href: string; children: ReactNode; className?: string; testId: string }) {
@@ -50,32 +58,39 @@ function Hero() {
     <section className="hero" id="home" aria-labelledby="hero-title">
       <div className="shell hero-layout">
         <div className="hero-copy">
-          <span className="eyebrow">The server command center</span>
-          <h1 id="hero-title">WAL<span>VER</span><sup style={{ color: '#735044', fontSize: '.2em', verticalAlign: 'top', letterSpacing: 0 }}>01</sup></h1>
-          <p>The all-in-one powerhouse for your server! Featuring Moderation, Economy, Mini-games, Tickets, Music, and Utility tools.</p>
+          <span className="eyebrow">THE SERVER COMMAND CENTER / 01</span>
+          <div className="hero-logo-wrap"><img className="hero-logo" src="/assets/spade-logo.png" alt="Spade logo" /></div>
+          <h1 id="hero-title">Spade<span>.</span></h1>
+          <p className="hero-tagline">The Ultimate Multi-Purpose Discord Bot</p>
+          <p>One sharp toolkit for the communities that do more. 150+ commands for moderation, utility, economy, games, and server management.</p>
           <div className="hero-actions">
-            <ExternalLink href={ADD_WALVER} className="button-primary" testId="link-hero-add">ADD WALVER <ArrowRight size={16} /></ExternalLink>
-            <ExternalLink href={SUPPORT_SERVER} className="button-secondary" testId="link-hero-support">SUPPORT SERVER <ArrowUpRight size={15} /></ExternalLink>
+            <ExternalLink href={ADD_SPADE} className="button-primary" testId="link-hero-add">INVITE SPADE <ArrowRight size={16} /></ExternalLink>
+            <ExternalLink href={SUPPORT_SERVER} className="button-secondary" testId="link-hero-support">JOIN SUPPORT SERVER <ArrowUpRight size={15} /></ExternalLink>
           </div>
           <div className="hero-meta" data-testid="status-bot-ready">
             <span className="status-dot" aria-hidden="true" />
-            <span>READY FOR YOUR NEXT COMMAND</span>
-            <span style={{ color: '#4b413c' }}>/</span>
-            <span>v2.6.0</span>
+            <span>ONLINE & READY</span>
+            <span style={{ color: '#334155' }}>/</span>
+            <span>v3.0.0</span>
+            <span style={{ color: '#334155' }}>/</span>
+            <span>99.98% UPTIME</span>
           </div>
         </div>
-        <div className="hero-art" aria-label="Walver command preview" data-testid="hero-command-preview">
+        <div className="hero-art" aria-label="Spade command preview" data-testid="hero-command-preview">
           <div className="art-glow" />
           <div className="art-orbit" />
+          <div className="hero-stat stat-commands"><strong>{allCommands.length}+</strong><span>COMMANDS</span></div>
+          <div className="hero-stat stat-servers"><strong>12.4k</strong><span>SERVERS</span></div>
+          <div className="hero-stat stat-users"><strong>2.1m</strong><span>USERS</span></div>
           <div className="command-window">
             <div className="window-top">
-              <span className="mono">walver / command-center</span>
+              <span className="mono">spade / command-center</span>
               <span className="window-dots" aria-hidden="true"><i /><i /><i /></span>
             </div>
             <div className="window-code">
               <div className="code-line"><span className="num">01</span><span className="key">/configwizard</span></div>
               <div className="code-line"><span className="num">02</span><span className="dim">› checking server permissions...</span></div>
-              <div className="code-line"><span className="num">03</span><span className="dim">› loading {allCommands.length} commands...</span></div>
+              <div className="code-line"><span className="num">03</span><span className="dim">› loading {allCommands.length}+ commands...</span></div>
               <div className="code-line"><span className="num">04</span><span className="value">all systems operational</span></div>
               <div className="code-line"><span className="num">05</span><span className="key">/ready</span><span className="window-caret" /></div>
             </div>
@@ -94,7 +109,7 @@ function Features() {
         <div className="section-head">
           <div>
             <span className="eyebrow">Everything in one place</span>
-            <h2 id="features-title">Less tab-switching.<br /><span className="orange-text">More community.</span></h2>
+          <h2 id="features-title">Less tab-switching.<br /><span className="blue-text">More community.</span></h2>
           </div>
           <p className="section-intro">A focused toolkit for the people who keep Discord servers moving. Configure once, then get back to your community.</p>
         </div>
@@ -135,9 +150,9 @@ function CommandDirectory() {
         <div className="section-head">
           <div>
             <span className="eyebrow">Built for busy servers</span>
-            <h2 id="directory-title">Find the right<br /><span className="orange-text">command fast.</span></h2>
+           <h2 id="directory-title">Find the right<br /><span className="blue-text">command fast.</span></h2>
           </div>
-          <p className="section-intro">Browse the complete Walver command set. Search by intent or filter by the part of your server you want to improve.</p>
+           <p className="section-intro">Browse the complete Spade command set. Search by intent or filter by the part of your server you want to improve.</p>
         </div>
         <div className="directory-toolbar">
           <label className="search-box" htmlFor="command-search">
@@ -174,12 +189,41 @@ function CommandDirectory() {
               </article>
             )) : (
               <div className="empty-directory" data-testid="empty-command-results">
-                <CircleHelp size={22} className="orange-text" />
+                 <CircleHelp size={22} className="blue-text" />
                 <strong>No commands match that search.</strong>
                 <span>Try a shorter phrase or clear the current filters.</span>
               </div>
             )}
           </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function FAQ() {
+  const [open, setOpen] = useState<number | null>(0);
+  return (
+    <section className="section faq-section" id="faq" aria-labelledby="faq-title">
+      <div className="shell faq-layout">
+        <div>
+          <span className="eyebrow">Questions, answered</span>
+          <h2 id="faq-title">Built to be<br /><span className="blue-text">straightforward.</span></h2>
+          <p className="section-intro">No maze of documentation before your first useful command. Add Spade, run the wizard, and make it yours.</p>
+        </div>
+        <div className="faq-list">
+          {faqs.map((faq, index) => {
+            const isOpen = open === index;
+            return (
+              <div className={`faq-item ${isOpen ? 'is-open' : ''}`} key={faq.question}>
+                <button type="button" className="faq-question focus-ring" aria-expanded={isOpen} onClick={() => setOpen(isOpen ? null : index)} data-testid={`button-faq-${index}`}>
+                  <span>{faq.question}</span>
+                  {isOpen ? <ChevronUp size={17} /> : <ChevronDown size={17} />}
+                </button>
+                {isOpen && <p className="faq-answer">{faq.answer}</p>}
+              </div>
+            );
+          })}
         </div>
       </div>
     </section>
@@ -194,9 +238,9 @@ function Footer() {
           <div className="cta-panel">
             <div>
               <span className="eyebrow">Make your server your own</span>
-              <h2 id="cta-title">Ready to power up your Discord community?</h2>
+             <h2 id="cta-title">Your server has a lot to do.</h2>
             </div>
-            <ExternalLink href={ADD_WALVER} className="button-primary" testId="link-footer-add">Add Bot <ArrowUpRight size={16} /></ExternalLink>
+             <ExternalLink href={ADD_SPADE} className="button-primary" testId="link-footer-add">Add Spade <ArrowUpRight size={16} /></ExternalLink>
           </div>
         </div>
       </section>
@@ -204,8 +248,8 @@ function Footer() {
         <div className="shell">
           <div className="footer-main">
             <div className="footer-brand">
-              <a href="#home" className="brand" data-testid="link-footer-brand"><CrownMark /><span>WALVER</span></a>
-              <p>A sharper command center for the communities that never stop moving.</p>
+               <a href="#home" className="brand" data-testid="link-footer-brand"><SpadeMark /><span>SPADE</span></a>
+               <p>A sharper command center for the communities that never stop moving.</p>
             </div>
             <div className="footer-col">
               <h3>Quick Links</h3>
@@ -216,12 +260,13 @@ function Footer() {
             <div className="footer-col">
               <h3>Support</h3>
               <ExternalLink href={SUPPORT_SERVER} testId="link-footer-support">Support Server</ExternalLink>
-              <ExternalLink href={ADD_WALVER} testId="link-footer-add-walver">Add Walver</ExternalLink>
+               <ExternalLink href={ADD_SPADE} testId="link-footer-add-spade">Add Spade</ExternalLink>
+               <ExternalLink href={TOPGG_VOTE} testId="link-footer-vote">Vote on Top.gg</ExternalLink>
             </div>
             <div className="footer-col">
               <h3>Legal</h3>
               <a
-                href="https://walver.vercel.app/terms-of-services"
+                 href="https://spade.bot/terms-of-service"
                 target="_blank"
                 rel="noopener noreferrer"
                 data-testid="link-footer-terms"
@@ -229,7 +274,7 @@ function Footer() {
                 Terms of Service
               </a>
               <a
-                href="https://walver.vercel.app/privacy-policy"
+                 href="https://spade.bot/privacy-policy"
                 target="_blank"
                 rel="noopener noreferrer"
                 data-testid="link-footer-privacy"
@@ -239,8 +284,8 @@ function Footer() {
             </div>
           </div>
           <div className="footer-bottom">
-            <span>© 2026 Walver Bot. All rights reserved.</span>
-            <span className="mono">BUILT FOR THE COMMUNITY / 1547548274892742726</span>
+             <span>© 2026 Spade Bot. All rights reserved.</span>
+             <span className="mono">BUILT FOR THE COMMUNITY / SPADE-01</span>
           </div>
         </div>
       </footer>
@@ -250,11 +295,12 @@ function Footer() {
 
 function Home() {
   return (
-    <main className="walver-page">
+    <main className="spade-page">
       <Navigation />
       <Hero />
       <Features />
       <CommandDirectory />
+      <FAQ />
       <Footer />
     </main>
   );

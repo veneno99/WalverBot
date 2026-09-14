@@ -1,8 +1,8 @@
 import { useEffect, useState, type ReactNode } from 'react';
 import { ArrowRight, ArrowUpRight, BookOpen, Check, ChevronRight, Menu, X } from 'lucide-react';
 import { Link } from 'wouter';
-import { CrownMark } from '@/components/walver/CrownMark';
-import { Navigation, ADD_WALVER, SUPPORT_SERVER } from '@/components/walver/Navigation';
+import { SpadeMark } from '@/components/spade/SpadeMark';
+import { Navigation, ADD_SPADE, SUPPORT_SERVER } from '@/components/spade/Navigation';
 import { setupCommands, setupSections, syntaxRows } from '@/data/setup-guide';
 
 function CommandChip({ command, argument }: { command: string; argument?: string }) {
@@ -49,7 +49,7 @@ function DocsSidebar({ mobileOpen, closeSidebar }: { mobileOpen: boolean; closeS
           <span className="docs-sidebar-kicker"><BookOpen size={14} /> Documentation</span>
           <button className="docs-sidebar-close focus-ring" type="button" aria-label="Close documentation menu" onClick={closeSidebar} data-testid="button-close-sidebar"><X size={18} /></button>
         </div>
-        <p className="docs-sidebar-intro">Configure Walver with a few focused commands.</p>
+         <p className="docs-sidebar-intro">Configure Spade with a few focused commands.</p>
         <nav className="docs-toc">
           {setupSections.map((section) => (
             <a
@@ -96,9 +96,9 @@ function DocsFooter() {
           <div className="docs-cta-panel">
             <div>
               <span className="eyebrow">Your server, your rules</span>
-              <h2 id="docs-cta-title">Ready to make Walver yours?</h2>
+               <h2 id="docs-cta-title">Ready to make Spade yours?</h2>
             </div>
-            <a href={ADD_WALVER} target="_blank" rel="noreferrer" className="button-primary" data-testid="link-docs-cta-add">Add Walver <ArrowUpRight size={16} /></a>
+             <a href={ADD_SPADE} target="_blank" rel="noreferrer" className="button-primary" data-testid="link-docs-cta-add">Add Spade <ArrowUpRight size={16} /></a>
           </div>
         </div>
       </section>
@@ -106,7 +106,7 @@ function DocsFooter() {
         <div className="shell">
           <div className="footer-main">
             <div className="footer-brand">
-              <Link href="/" className="brand" data-testid="link-docs-footer-brand"><CrownMark /><span>WALVER</span></Link>
+               <Link href="/" className="brand" data-testid="link-docs-footer-brand"><SpadeMark /><span>SPADE</span></Link>
               <p>A sharper command center for the communities that never stop moving.</p>
             </div>
             <div className="footer-col">
@@ -118,12 +118,12 @@ function DocsFooter() {
             <div className="footer-col">
               <h3>Support</h3>
               <a href={SUPPORT_SERVER} target="_blank" rel="noreferrer" data-testid="link-docs-footer-support">Support Server</a>
-              <a href={ADD_WALVER} target="_blank" rel="noreferrer" data-testid="link-docs-footer-add">Add Walver</a>
+               <a href={ADD_SPADE} target="_blank" rel="noreferrer" data-testid="link-docs-footer-add">Add Spade</a>
             </div>
             <div className="footer-col">
               <h3>Legal</h3>
               <a
-                href="https://walver.vercel.app/terms-of-services"
+                 href="https://spade.bot/terms-of-service"
                 target="_blank"
                 rel="noopener noreferrer"
                 data-testid="link-docs-footer-terms"
@@ -131,7 +131,7 @@ function DocsFooter() {
                 Terms of Service
               </a>
               <a
-                href="https://walver.vercel.app/privacy-policy"
+                 href="https://spade.bot/privacy-policy"
                 target="_blank"
                 rel="noopener noreferrer"
                 data-testid="link-docs-footer-privacy"
@@ -141,8 +141,8 @@ function DocsFooter() {
             </div>
           </div>
           <div className="footer-bottom">
-            <span>© 2026 Walver Bot. All rights reserved.</span>
-            <span className="mono">BUILT FOR THE COMMUNITY / 1547548274892742726</span>
+             <span>© 2026 Spade Bot. All rights reserved.</span>
+             <span className="mono">BUILT FOR THE COMMUNITY / SPADE-01</span>
           </div>
         </div>
       </footer>
@@ -156,11 +156,11 @@ export default function SetupGuide() {
   const scrollToStart = () => document.getElementById('getting-started')?.scrollIntoView({ behavior: 'smooth' });
 
   return (
-    <main className="walver-page docs-page">
+    <main className="spade-page docs-page">
       <Navigation />
       <div className="docs-hero shell">
-        <span className="eyebrow">Walver / Setup Guide</span>
-        <h1>Walver Bot Documentation</h1>
+         <span className="eyebrow">Spade / Setup Guide</span>
+         <h1>Spade Bot Documentation</h1>
         <p>A fully customizable, multi-purpose and modular Discord bot. Welcome to the documentation.</p>
         <button className="button-primary docs-start-button" type="button" onClick={scrollToStart} data-testid="button-get-started">Get Started <ArrowRight size={16} /></button>
       </div>
@@ -180,9 +180,9 @@ export default function SetupGuide() {
               <span className="docs-section-index">01</span>
               <div><span className="docs-section-eyebrow">First steps</span><h2>Getting Started</h2></div>
             </div>
-            <p>Walver is built around Discord’s native command surface. Invite the bot, make sure it can see the channels you want to configure, then use a slash command to begin.</p>
+             <p>Spade is built around Discord’s native command surface. Invite the bot, make sure it can see the channels you want to configure, then use a slash command to begin.</p>
             <div className="docs-steps">
-              <div><span>01</span><div><strong>Invite Walver</strong><p>Add the bot with the permissions it needs for your server.</p></div></div>
+               <div><span>01</span><div><strong>Invite Spade</strong><p>Add the bot with the permissions it needs for your server.</p></div></div>
               <div><span>02</span><div><strong>Open a staff channel</strong><p>Run setup commands somewhere only your team can access.</p></div></div>
               <div><span>03</span><div><strong>Choose a target</strong><p>Use a channel mention when a command asks where events should land.</p></div></div>
             </div>
@@ -195,7 +195,7 @@ export default function SetupGuide() {
               <div><span className="docs-section-eyebrow">Read the notation</span><h2>Command Syntax</h2></div>
             </div>
             <p>Every reference uses a small syntax vocabulary. Start with the slash, then fill in only the arguments the command asks for.</p>
-            <AlertCard tone="info" title="Info">{"Walver strictly uses Discord Slash Commands (/)."}</AlertCard>
+             <AlertCard tone="info" title="Info">{"Spade strictly uses Discord Slash Commands (/)."}</AlertCard>
             <div className="docs-syntax-card">
               <div className="docs-syntax-example"><span className="docs-syntax-prompt">$</span><CommandChip command="/welcome" argument="set target:<#channel>" /></div>
               <table className="docs-syntax-table">
@@ -210,7 +210,7 @@ export default function SetupGuide() {
               <span className="docs-section-index">03</span>
               <div><span className="docs-section-eyebrow">Basic server configuration</span><h2>Channels</h2></div>
             </div>
-            <p>Give Walver a clear home for operational updates. These targets keep noisy events out of general chat and make them useful to staff.</p>
+             <p>Give Spade a clear home for operational updates. These targets keep noisy events out of general chat and make them useful to staff.</p>
             {setupCommands.channels.map((item) => (
               <ConfigurationBlock title={item.command === '/logging' ? 'Logging target' : 'Welcome target'} eyebrow={item.command} key={item.command}>
                 <CommandChip command={item.command} argument={item.argument} />
